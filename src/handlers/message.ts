@@ -1,7 +1,7 @@
 import { Message, MessageTypes } from "whatsapp-web.js";
 import { startsWithIgnoreCase, broadcastMessage, checkAndUpdateProStatus, normalizeWhiteSpaces } from "../utils";
 import { client } from "../index";
-import { getPhoneNumbersByLocation, getPhoneNumbersByLocationPrefix, getAllPhoneNumbers, addUser, deleteUser, changePackageKey, changePackagePrice, createPackage, deletePackage, getUserIdByPhoneNumber, getPackages, getUserAndPhoneNumbers, deletePhoneNumber, addPhoneNumber, initializeUserParam } from "../api/sqlite3";
+import { getPhoneNumbersByLocation, getPhoneNumbersByLocationPrefix, getAllPhoneNumbers, addUser, deleteUser, getUserIdByPhoneNumber, getUserAndPhoneNumbers, deletePhoneNumber, addPhoneNumber, initializeUserParam } from "../api/sqlite3";
 
 // CLI
 import * as cli from "../cli/ui";

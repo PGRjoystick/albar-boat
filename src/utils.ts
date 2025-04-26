@@ -8,7 +8,7 @@ import axios from 'axios';
 import { Message } from 'whatsapp-web.js';
 import nodemailer from 'nodemailer';
 
-const startsWithIgnoreCase = (str, prefix) => str.toLowerCase().startsWith(prefix.toLowerCase());
+export const startsWithIgnoreCase = (str, prefix) => str.toLowerCase().startsWith(prefix.toLowerCase());
 
 const startsWithCase = (str, prefix) => str.toLowerCase().startsWith(prefix);
 
@@ -33,7 +33,7 @@ async function loadJobProgress(): Promise<{ jobId: string, processedNumbers: str
     return { jobId: '', processedNumbers: [], messageBody: '' };
 }
 
-async function broadcastMessage(messageBody: string) {
+export async function broadcastMessage(messageBody: string) {
     const { jobId, processedNumbers, messageBody: savedMessageBody } = await loadJobProgress();
     const newJobId = jobId || uuidv4();
     const phoneNumbers = await getAllPhoneNumbersFromJson();
