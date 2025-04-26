@@ -1,11 +1,11 @@
 import qrcode from "qrcode";
 import { Client, Message, Events, LocalAuth } from "whatsapp-web.js";
-import { initializeWebhookServer } from './handlers/webhook';
 
 // CLI
 import * as cli from "./cli/ui";
 import { handleIncomingMessage } from "./handlers/message";
 import { initializeDatabase } from "./api/sqlite3";
+import { initializeScheduler } from "./api/scheduler";
 
 // Config
 // import { initAiConfig } from "./handlers/ai-config";
@@ -113,8 +113,11 @@ const start = async () => {
 		botReadyTimestamp = new Date();
 		// Initialize the webhook server
 		initializeDatabase();
-		initializeWebhookServer();
 
+		// First scheduler (e.g., lunch break)
+		initializeScheduler(async () => {
+		  await client.sendMessage(process.env.LUNCH_GROUP_ID || '', process.env.MESSAGE_TO_SEND || 'WAKTUNYA ISTIRAHAT...!!!!');
+		});
 	});
 
 	// WhatsApp message

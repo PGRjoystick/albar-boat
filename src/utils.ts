@@ -6,7 +6,6 @@ import { client } from "./index";
 import * as cli from "./cli/ui";
 import axios from 'axios';
 import { Message } from 'whatsapp-web.js';
-import nodemailer from 'nodemailer';
 
 export const startsWithIgnoreCase = (str, prefix) => str.toLowerCase().startsWith(prefix.toLowerCase());
 
@@ -133,28 +132,6 @@ export function normalizeWhiteSpaces(messageBody: string) {
     // Normalize whitespace
     const normalizedMessageBody = messageBody.replace(/\s+/g, ' ').trim();
     return normalizedMessageBody;
-}
-
-// Function to send an email
-export async function sendEmail(to: string, subject: string, text: string) {
-    let transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD
-        }
-    });
-
-    let info = await transporter.sendMail({
-        from: process.env.SMTP_FROM,
-        to: to,
-        subject: subject,
-        text: text
-    });
-
-    console.log('Message sent: %s', info.messageId);
 }
 
 // Function to generate a random string
